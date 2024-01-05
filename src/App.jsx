@@ -1,33 +1,55 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import Section from './components/Section'
+import InfoCard from './components/InfoCard'
+import CVDisplay from './components/CVDisplay'
 
 function App() {
-  const [count, setCount] = useState(0)
+    const [name, setName] = useState("")
+    const [email, setEmail] = useState("")
+    const [phone, setPhone] = useState("")
+    const [generalInfoClicked, isGeneralInfoClicked] = useState(false)
+
+    const handleNameChange = (e) => {
+        setName(e.target.value)
+    }
+
+    const handleEmailChange = (e) => {
+        setEmail(e.target.value)
+    }
+
+    const handlePhoneChange = (e) => {
+        setPhone(e.target.value)
+    }
+
+    const handleGeneralInfoClicked = () => {
+      isGeneralInfoClicked(!generalInfoClicked)
+    }
+
+    const generalInfoInputs = [
+
+      {
+          inputLabel: "Name:",
+          inputValue: name,
+          handler: handleNameChange
+      },
+      {
+          inputLabel: "Email:",
+          inputValue: email,
+          handler: handleEmailChange
+      },
+      {
+          inputLabel: "Phone no:",
+          inputValue: phone,
+          handler: handlePhoneChange
+      }
+  ]
 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      {!generalInfoClicked? <Section sectionType={"generalInfo"} sectionDescription={"General Info"} sectionInputObjects={generalInfoInputs} buttonHandler={handleGeneralInfoClicked}/>: <InfoCard name={name} email={email} phone={phone} buttonHandler={handleGeneralInfoClicked}/>}
+      <Section sectionType={"education"} sectionDescription={"Education Experience"}/>
+      <Section sectionType={"practical"} sectionDescription={"Practical Experience"}/>
+      <CVDisplay name={name} email={email} phone={phone} generalInfoClicked={generalInfoClicked}/>
     </>
   )
 }

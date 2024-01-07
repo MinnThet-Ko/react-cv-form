@@ -1,7 +1,7 @@
 import { useState } from "react";
 import InfoFormInput from "./InfoFormInput";
 
-function ExperienceForm({inputFields, buttonHandler}){
+function ExperienceForm({inputFields, submitButtonHandler}){
 
     return (
         <>
@@ -12,7 +12,7 @@ function ExperienceForm({inputFields, buttonHandler}){
                 )
             }
             
-            <input type="button" value={"Add"} onClick={buttonHandler}/>
+            <input type="button" value={"Add"} onClick={submitButtonHandler}/>
 
         </>
     )

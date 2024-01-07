@@ -1,6 +1,6 @@
 import InfoFormInput from "./InfoFormInput";
 
-function InfoForm({inputObjects, buttonHandler}){
+function InfoForm({inputObjects, submitButtonHandler}){
     return(
         <>
             {
@@ -12,7 +12,7 @@ function InfoForm({inputObjects, buttonHandler}){
                 )
             }
 
-            <input type="button" value={"Submit"} onClick={buttonHandler}/>
+            <input type="button" value={"Submit"} onClick={submitButtonHandler}/>
         </>
     );
 }
